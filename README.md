@@ -12,6 +12,17 @@ coverage](https://codecov.io/gh/LCBC-UiO/ggsegDefaultExtra/branch/master/graph/b
 status](https://github.com/LCBC-UiO/ggsegDefaultExtra/workflows/R-CMD-check/badge.svg)](https://github.com/LCBC-UiO/ggsegDefaultExtra/actions)
 <!-- badges: end -->
 
+-----
+
+## ⚠️ ARCHIVED REPOSITORY
+
+**This repository has been archived and is no longer maintained.**
+
+This package is deprecated and no further updates will be provided. The
+repository is now in read-only mode.
+
+-----
+
 This package contains dataset for plotting the extra datasets based on
 the default ggseg and ggseg3d atlases: Desikan-Killany cortical atlas
 (`dk`) and the aseg subcrotical atlas.
