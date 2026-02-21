@@ -23,12 +23,8 @@ Suggests:
     ggplot2,
     testthat (>= 3.0.0),
     vdiffr
-Remotes:
-    ggseg/ggseg.formats,
-    ggseg/ggseg,
-    ggseg/ggseg3d
-URL: https://github.com/ggseg/ggsegDefaultExtra
-BugReports: https://github.com/ggseg/ggsegDefaultExtra/issues
+URL: https://github.com/ggsegverse/ggsegDefaultExtra
+BugReports: https://github.com/ggsegverse/ggsegDefaultExtra/issues
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Config/testthat/edition: 3
