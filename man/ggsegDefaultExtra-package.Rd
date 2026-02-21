@@ -13,8 +13,8 @@ This is a support package for the ggseg, and ggseg3d packages. It contains the e
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://github.com/ggseg/ggsegDefaultExtra}
-  \item Report bugs at \url{https://github.com/ggseg/ggsegDefaultExtra/issues}
+  \item \url{https://github.com/ggsegverse/ggsegDefaultExtra}
+  \item Report bugs at \url{https://github.com/ggsegverse/ggsegDefaultExtra/issues}
 }
 
 }
