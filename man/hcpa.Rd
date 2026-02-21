@@ -12,3 +12,8 @@ A \link[ggseg.formats:ggseg_atlas]{ggseg.formats::ggseg_atlas} object (subcortic
 \description{
 Human Connectome Project Subcortical Atlas
 }
+\seealso{
+Other ggseg_atlases: 
+\code{\link{dkextra}()}
+}
+\concept{ggseg_atlases}

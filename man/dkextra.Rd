@@ -12,3 +12,8 @@ A \link[ggseg.formats:ggseg_atlas]{ggseg.formats::ggseg_atlas} object (cortical)
 \description{
 Extra Desikan-Killiany Cortical Atlas
 }
+\seealso{
+Other ggseg_atlases: 
+\code{\link{hcpa}()}
+}
+\concept{ggseg_atlases}
