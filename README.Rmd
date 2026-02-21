@@ -26,7 +26,7 @@ knitr::opts_chunk$set(
 This package contains dataset for plotting the extra datasets based on the default ggseg and ggseg3d atlases: Desikan-Killany cortical atlas (`dk`) and the aseg subcrotical atlas. 
 
 `dkextra` contains both superior and inferior views of the inflated brain for the dk-atlas  
-`hcpa_3d` contains the aseg atlas, with additional division of the hippocampus into anterior and posterior parts   
+`hcpa()` contains the aseg atlas, with additional division of the hippocampus into anterior and posterior parts   
 
 ## Installation
 
@@ -60,7 +60,7 @@ library(ggsegDefaultExtra)
 library(ggseg)
 library(ggplot2)
 
-plot(dkextra) +
+plot(dkextra()) +
   theme(legend.position = "bottom",
         legend.text = element_text(size = 7)) +
   guides(fill = guide_legend(ncol = 3))
@@ -70,7 +70,7 @@ plot(dkextra) +
 library(ggseg3d)
 library(dplyr)
 
-ggseg3d(atlas = hcpa_3d) %>% 
+ggseg3d(atlas = hcpa()) %>% 
   add_glassbrain("left") %>% 
   pan_camera("right lateral")
 ```
@@ -79,7 +79,7 @@ ggseg3d(atlas = hcpa_3d) %>%
 library(ggseg3d)
 library(dplyr)
 
-p <- ggseg3d(atlas = hcpa_3d) %>%
+p <- ggseg3d(atlas = hcpa()) %>%
   add_glassbrain("left") %>% 
   pan_camera("right lateral") %>%
   plotly::add_annotations( text="Screen capture",
