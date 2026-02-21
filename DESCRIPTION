@@ -14,7 +14,6 @@ Description: This is a support package for the ggseg, and ggseg3d packages.
     atlases to plot using functions from those two packages.
 License: MIT + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Depends:
     R (>= 4.1),
     ggseg.formats
