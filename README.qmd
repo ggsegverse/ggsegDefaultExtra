@@ -2,16 +2,17 @@
 format: gfm
 ---
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.qmd. Please edit that file -->
 
 ```{r}
+#| label: setup
 #| include: false
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
   fig.path = "man/figures/README-",
-  fig.width = 6,
   out.width = "100%",
+  fig.width = 10,
   fig.retina = 3
 )
 ```
@@ -24,82 +25,90 @@ knitr::opts_chunk$set(
 [![R build status](https://github.com/LCBC-UiO/ggsegDefaultExtra/workflows/R-CMD-check/badge.svg)](https://github.com/LCBC-UiO/ggsegDefaultExtra/actions)
 <!-- badges: end -->
 
-This package contains dataset for plotting the extra datasets based on the default ggseg and ggseg3d atlases: Desikan-Killany cortical atlas (`dk`) and the aseg subcrotical atlas. 
+This package contains dataset for plotting the extra datasets based on the default ggseg and ggseg3d atlases: Desikan-Killany cortical atlas (`dk`) and the aseg subcrotical atlas.
 
-`dkextra` contains both superior and inferior views of the inflated brain for the dk-atlas  
-`hcpa()` contains the aseg atlas, with additional division of the hippocampus into anterior and posterior parts   
+`dkextra` contains both superior and inferior views of the inflated brain for the dk-atlas
+`hcpa()` contains the aseg atlas, with additional division of the hippocampus into anterior and posterior parts
 
 ## Installation
 
 We recommend installing the ggseg-atlases through the ggseg [r-universe](https://ggseg.r-universe.dev/ui#builds):
 
 ```{r}
+#| label: install-r-universe
 #| eval: false
-# Enable this universe
 options(repos = c(
-    ggseg = 'https://ggseg.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))
+  ggseg = "https://ggseg.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
 
-# Install some packages
-install.packages('ggsegDefaultExtra')
+install.packages("ggsegDefaultExtra")
 ```
 
-You can install the released version of ggsegDefaultExtra from [GitHub](https://github.com/) with:
+You can install from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("LCBC-UiO/ggsegDefaultExtra")
 ```
+
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ```{r}
-#| label: example
-library(ggsegDefaultExtra)
-```
-
-```{r}
+#| label: 2d-plot-dkextra
 #| fig-height: 7
+library(ggsegDefaultExtra)
 library(ggseg)
 library(ggplot2)
 
-plot(dkextra()) +
-  theme(legend.position = "bottom",
-        legend.text = element_text(size = 7)) +
-  guides(fill = guide_legend(ncol = 3))
+ggplot() +
+  geom_brain(
+    atlas = dkextra(),
+    mapping = aes(fill = label),
+    position = position_brain(hemi ~ view),
+    show.legend = FALSE
+  ) +
+  scale_fill_manual(values = dkextra()$palette, na.value = "grey") +
+  theme_void()
 ```
 
 ```{r}
-#| label: noneval
+#| label: 2d-plot-hcpa
+#| fig-height: 4
+ggplot() +
+  geom_brain(
+    atlas = hcpa(),
+    mapping = aes(fill = label),
+    position = position_brain(hemi ~ side),
+    show.legend = FALSE
+  ) +
+  scale_fill_manual(values = hcpa()$palette, na.value = "grey") +
+  theme_void()
+```
+
+```{r}
+#| label: 3d-example
 #| eval: false
 library(ggseg3d)
-library(dplyr)
 
-ggseg3d(atlas = hcpa()) |> 
-  add_glassbrain("left") |> 
+ggseg3d(atlas = hcpa()) |>
   pan_camera("right lateral")
 ```
 
 ```{r}
-#| label: orca
+#| label: 3d-snapshot
 #| include: false
+#| eval: !expr (file.exists(Sys.which("chrome")) || file.exists(Sys.which("chromium"))) && !nzchar(Sys.getenv("CI"))
 library(ggseg3d)
-library(dplyr)
 
-p <- ggseg3d(atlas = hcpa()) |>
-  add_glassbrain("left") |> 
+ggseg3d(atlas = hcpa()) |>
   pan_camera("right lateral") |>
-  plotly::add_annotations( text="Screen capture",
-                  legendtitle=TRUE, showarrow=FALSE,
-                  font = list(color = "#000000b4",
-                              family = 'sans serif',
-                              size = 50))
-snapshot_brain("man/figures/README-3d-plot.png")
+  snapshot_brain("man/figures/README-3d-plot.png")
 ```
 
 ```{r}
-#| label: incl
+#| label: 3d-include
 #| echo: false
+#| eval: !expr file.exists("man/figures/README-3d-plot.png")
 knitr::include_graphics("man/figures/README-3d-plot.png")
 ```
