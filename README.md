@@ -1,5 +1,6 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+<!-- README.md is generated from README.qmd. Please edit that file -->
 
 # ggsegDefaultExtra <img src='man/figures/logo.png' align="right" height="138.5" />
 
@@ -17,9 +18,8 @@ the default ggseg and ggseg3d atlases: Desikan-Killany cortical atlas
 (`dk`) and the aseg subcrotical atlas.
 
 `dkextra` contains both superior and inferior views of the inflated
-brain for the dk-atlas  
-`hcpa_3d` contains the aseg atlas, with additional division of the
-hippocampus into anterior and posterior parts
+brain for the dk-atlas `hcpa()` contains the aseg atlas, with additional
+division of the hippocampus into anterior and posterior parts
 
 ## Installation
 
@@ -27,17 +27,15 @@ We recommend installing the ggseg-atlases through the ggseg
 [r-universe](https://ggseg.r-universe.dev/ui#builds):
 
 ``` r
-# Enable this universe
 options(repos = c(
-    ggseg = 'https://ggseg.r-universe.dev',
-    CRAN = 'https://cloud.r-project.org'))
+  ggseg = "https://ggseg.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
 
-# Install some packages
-install.packages('ggsegDefaultExtra')
+install.packages("ggsegDefaultExtra")
 ```
 
-You can install the released version of ggsegDefaultExtra from
-[GitHub](https://github.com/) with:
+You can install from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
@@ -46,31 +44,32 @@ remotes::install_github("LCBC-UiO/ggsegDefaultExtra")
 
 ## Example
 
-This is a basic example which shows you how to solve a common problem:
-
 ``` r
 library(ggsegDefaultExtra)
-```
-
-``` r
 library(ggseg)
 library(ggplot2)
 
-plot(dkextra) +
-  theme(legend.position = "bottom",
-        legend.text = element_text(size = 7)) +
-  guides(fill = guide_legend(ncol = 3))
+ggplot() +
+  geom_brain(
+    atlas = dkextra(),
+    mapping = aes(fill = label),
+    position = position_brain(hemi ~ view),
+    show.legend = FALSE
+  ) +
+  scale_fill_manual(values = dkextra()$palette, na.value = "grey") +
+  theme_void()
 ```
 
-<img src="man/figures/README-unnamed-chunk-3-1.png" width="100%" />
+<img src="man/figures/README-2d-plot-dkextra-1.png"
+style="width:100.0%" />
+
+### hcpa (3D only - subcortical atlas)
 
 ``` r
 library(ggseg3d)
-library(dplyr)
 
-ggseg3d(atlas = hcpa_3d) %>% 
-  add_glassbrain("left") %>% 
+ggseg3d(atlas = hcpa()) |>
   pan_camera("right lateral")
 ```
 
-<img src="man/figures/README-3d-plot.png" width="100%" />
+<img src="man/figures/README-3d-plot.png" style="width:100.0%" />
