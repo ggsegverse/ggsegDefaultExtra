@@ -1,10 +1,11 @@
 ---
-output: github_document
+format: gfm
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-```{r, include = FALSE}
+```{r}
+#| include: false
 knitr::opts_chunk$set(
   collapse = TRUE,
   comment = "#>",
@@ -32,7 +33,8 @@ This package contains dataset for plotting the extra datasets based on the defau
 
 We recommend installing the ggseg-atlases through the ggseg [r-universe](https://ggseg.r-universe.dev/ui#builds):
 
-```{r eval = FALSE}
+```{r}
+#| eval: false
 # Enable this universe
 options(repos = c(
     ggseg = 'https://ggseg.r-universe.dev',
@@ -52,11 +54,13 @@ remotes::install_github("LCBC-UiO/ggsegDefaultExtra")
 
 This is a basic example which shows you how to solve a common problem:
 
-```{r example}
+```{r}
+#| label: example
 library(ggsegDefaultExtra)
 ```
 
-```{r, fig.height=7}
+```{r}
+#| fig-height: 7
 library(ggseg)
 library(ggplot2)
 
@@ -66,30 +70,36 @@ plot(dkextra()) +
   guides(fill = guide_legend(ncol = 3))
 ```
 
-```{r "noneval", eval=FALSE}
+```{r}
+#| label: noneval
+#| eval: false
 library(ggseg3d)
 library(dplyr)
 
-ggseg3d(atlas = hcpa()) %>% 
-  add_glassbrain("left") %>% 
+ggseg3d(atlas = hcpa()) |> 
+  add_glassbrain("left") |> 
   pan_camera("right lateral")
 ```
 
-```{r "orca", include=FALSE}
+```{r}
+#| label: orca
+#| include: false
 library(ggseg3d)
 library(dplyr)
 
-p <- ggseg3d(atlas = hcpa()) %>%
-  add_glassbrain("left") %>% 
-  pan_camera("right lateral") %>%
+p <- ggseg3d(atlas = hcpa()) |>
+  add_glassbrain("left") |> 
+  pan_camera("right lateral") |>
   plotly::add_annotations( text="Screen capture",
                   legendtitle=TRUE, showarrow=FALSE,
                   font = list(color = "#000000b4",
                               family = 'sans serif',
                               size = 50))
-plotly::orca(p, "man/figures/README-3d-plot.png")
+snapshot_brain("man/figures/README-3d-plot.png")
 ```
 
-```{r "incl", echo=FALSE}
+```{r}
+#| label: incl
+#| echo: false
 knitr::include_graphics("man/figures/README-3d-plot.png")
 ```
