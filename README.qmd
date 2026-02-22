@@ -72,19 +72,7 @@ ggplot() +
   theme_void()
 ```
 
-```{r}
-#| label: 2d-plot-hcpa
-#| fig-height: 4
-ggplot() +
-  geom_brain(
-    atlas = hcpa(),
-    mapping = aes(fill = label),
-    position = position_brain(hemi ~ side),
-    show.legend = FALSE
-  ) +
-  scale_fill_manual(values = hcpa()$palette, na.value = "grey") +
-  theme_void()
-```
+### hcpa (3D only - subcortical atlas)
 
 ```{r}
 #| label: 3d-example
