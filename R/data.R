@@ -4,10 +4,12 @@
 #' @import ggseg.formats
 #' @export
 #' @family ggseg_atlases
+#' @family cortical_atlases
 dkextra <- function() .dkextra
 #' Human Connectome Project Subcortical Atlas
 #'
 #' @return A [ggseg.formats::ggseg_atlas] object (subcortical).
 #' @export
 #' @family ggseg_atlases
+#' @family subcortical_atlases
 hcpa <- function() .hcpa
